@@ -10,9 +10,12 @@ def main():
 
     val_rate = 0.5
 
+    # 分割文件名，然后计算文件个数，再进行随机采样
     files_name = sorted([file.split(".")[0] for file in os.listdir(files_path)])
     files_num = len(files_name)
     val_index = random.sample(range(0, files_num), k=int(files_num*val_rate))
+
+    # 随机采样后，将文件名写入train.txt和val.txt
     train_files = []
     val_files = []
     for index, file_name in enumerate(files_name):
