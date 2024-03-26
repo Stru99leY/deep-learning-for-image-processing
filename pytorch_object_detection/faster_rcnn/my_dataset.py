@@ -65,6 +65,7 @@ class VOCDataSet(Dataset):
         with open(xml_path) as fid:
             xml_str = fid.read()
         xml = etree.fromstring(xml_str)
+        # 从得到的字典中取出 "annotation" 键对应的值，并将其赋值给变量 data
         data = self.parse_xml_to_dict(xml)["annotation"]
         img_path = os.path.join(self.img_root, data["filename"])
         image = Image.open(img_path)
@@ -206,7 +207,7 @@ class VOCDataSet(Dataset):
 # import matplotlib.pyplot as plt
 # import torchvision.transforms as ts
 # import random
-#
+
 # # read class_indict
 # category_index = {}
 # try:
@@ -216,13 +217,13 @@ class VOCDataSet(Dataset):
 # except Exception as e:
 #     print(e)
 #     exit(-1)
-#
+
 # data_transform = {
 #     "train": transforms.Compose([transforms.ToTensor(),
 #                                  transforms.RandomHorizontalFlip(0.5)]),
 #     "val": transforms.Compose([transforms.ToTensor()])
 # }
-#
+
 # # load train data set
 # train_data_set = VOCDataSet(os.getcwd(), "2012", data_transform["train"], "train.txt")
 # print(len(train_data_set))
